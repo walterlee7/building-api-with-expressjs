@@ -28,6 +28,11 @@ let deleteChirp = id => {
     writeChirps();
 }
 
+let deleteChirps = () => {
+    chirps = { nextid: 0 };
+    writeChirps();
+}
+
 let writeChirps = () => {
     fs.writeFileSync('chirps.json', JSON.stringify(chirps));
 };
@@ -35,6 +40,7 @@ let writeChirps = () => {
 module.exports = {
     CreateChirp: createChirp,
     DeleteChirp: deleteChirp,
+    DeleteChirps: deleteChirps,
     GetChirps: getChirps,
     GetChirp: getChirp,
     UpdateChirp: updateChirp

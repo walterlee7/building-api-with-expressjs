@@ -50,17 +50,33 @@ $.ajax({
                 });
             });
 
+            $('#clearBtn').click((evt) => {
+                evt.preventDefault();
+                console.log('clear');
+
+                $.ajax({
+                    type: 'DELETE',
+                    url: `/api/chirps`,
+                }).then((r) => {
+                    console.log('success!');
+                    window.location.reload(true);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            });
+
+
             $(`#d${key}`).click((evt) => {
                 evt.preventDefault();
                 $('.modal-body').append(`<textarea id="t${key}">${chirps[key].text}</textarea>`);
                 $('.modal-footer').append(`<button id="s${key}" type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>`);
 
-                //console.log(`s${key}`);
+
                 $(`#s${key}`).bind("click", function (evt) {
                     evt.preventDefault();
-                    console.log('clicked');
+
                     let changeText = $(`#t${key}`).val();
-                    console.log(changeText);
+
                     $.ajax({
                         type: 'PUT',
                         url: `/api/chirps/${key}`,

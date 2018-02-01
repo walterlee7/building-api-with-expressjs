@@ -24,18 +24,19 @@ router.put('/:id?', (req, res) => {
 
     res.sendStatus(200);
 
-
-
-    // if (!chirp || Object.keys(chirp).length === 0) {
-    //     res.sendStatus(404);
-    //     return;
-    // }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id?', (req, res) => {
 
-    chirpsStore.DeleteChirp(req.params.id);
-    res.sendStatus(200);
+    let id = req.params.id;
+
+    if (id) {
+        chirpsStore.DeleteChirp(id);
+        res.sendStatus(200);
+    } else {
+        chirpsStore.DeleteChirps();
+        res.sendStatus(200);
+    }
 });
 
 
