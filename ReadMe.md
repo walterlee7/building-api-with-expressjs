@@ -1,5 +1,7 @@
 Building API with Express.js Lab Assignment
-REQUIRED
+
+To run program, type in terminal: node server/server.js
+Then go to localhost: 3001.
 
 Setup an API with the project structure like:
 /client
